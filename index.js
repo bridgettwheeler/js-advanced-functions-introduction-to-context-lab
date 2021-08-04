@@ -15,6 +15,7 @@ function createEmployeeRecords(records) {
     return records.map(record => createEmployeeRecord(record))
 }
 function createTimeInEvent(record, dateStamp) {
-    return Object.assign(record.timeInEvents, {type: "TimeIn"}, {hour: `$dateStamp.charAt(11,12)`})
+    let dateAndTime =dateStamp.split(" ")
+    return Object.assign(record.timeInEvents, {type: "TimeIn", hour: `$dateStamp.charAt(11,12)`, date: dateAndTime[0]})
 
 }
