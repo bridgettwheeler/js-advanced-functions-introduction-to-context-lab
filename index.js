@@ -29,10 +29,16 @@ function createTimeOutEvent(record, dateStamp) {
 //and subtract it from the object that has the key value pair type: timeIn
 
 function hoursWorkedOnDate(record, date) {
-    console.log("record:",record)
     const timeIn = record.timeInEvents.filter(event => event.date === date)
     const timeOut = record.timeOutEvents.filter(event => event.date === date)
-    console.log("Bridgett, this is timeIn:", timeIn)
     return (timeOut[0].hour - timeIn[0].hour)/100
-
+}
+function wagesEarnedOnDate(record, date) {
+    return hoursWorkedOnDate(record, date) * record.payPerHour
+}
+function allWagesFor(record) {
+// iterate through the the timeInEvents array and for each object/element somehow
+// pass the date as the argument in wagesEarnedOnDate. It will iterate over each 
+//objects date passing it to that function untill the end and return a total
+console.log("Bridgett this is record:", record)
 }
