@@ -37,8 +37,22 @@ function wagesEarnedOnDate(record, date) {
     return hoursWorkedOnDate(record, date) * record.payPerHour
 }
 function allWagesFor(record) {
-// iterate through the the timeInEvents array and for each object/element somehow
-// pass the date as the argument in wagesEarnedOnDate. It will iterate over each 
-//objects date passing it to that function untill the end and return a total
-console.log("Bridgett this is record:", record)
+    const arrayOfDates = record.timeInEvents.map(event => event.date)
+    return arrayOfDates.reduce((accumulator, currentValue) => {
+        return accumulator + wagesEarnedOnDate(record, currentValue)
+    }, 0)
+}
+function findEmployeeByFirstName(srcArray, firstName) {
+    var nameMatch = srcArray.filter(record => record.firstName === firstName)
+    return nameMatch[0]
+}
+//map through each record in this array and run allWagesFor function on each record.
+//then with the array that is returned use reduce to get sum
+function calculatePayroll(recordsArray) {
+    var arrayOfWages = recordsArray.map(record => allWagesFor(record))
+    console.log("Bridgett this is arrayOfWages:", arrayOfWages)
+    return arrayOfWages.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue
+    }, 0)
+
 }
